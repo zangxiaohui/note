@@ -28,6 +28,9 @@
 ### 合并多个小版本
 
     git rebase -i HEAD
+    git rebase -i HEAD----
+    git rebase -i 40bcecaf964d66e1de5523bdb31ee88ffdbf9d66
+    git rebase -i origin/master
 
 ### git的tab补全功能
 
