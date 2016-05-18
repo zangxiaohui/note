@@ -30,3 +30,5 @@
     git rebase -i HEAD
 
 ### git的tab补全功能
+
+    source ~/.git-completion.bash
