@@ -1,3 +1,21 @@
+### .gitconfig 文件
+    [user]
+      name = Xiaohui Zang
+      email = zangxiaohui@me.com
+    [core]
+      editor = vim
+    [alias]
+      ci = commit -a -v
+      co = checkout
+      st = status
+      br = branch
+      throw = reset --hard HEAD
+      throwh = reset --hard HEAD^
+    [color]
+      ui = true
+    [push]
+      default = current
+
 ### 做小的 commit，使得回滚成为可能
 
     git throw = git reset --hard HEAD
@@ -10,3 +28,5 @@
 ### 合并多个小版本
 
     git rebase -i HEAD
+
+### git的tab补全功能
