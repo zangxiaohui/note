@@ -35,3 +35,12 @@
 ### git的tab补全功能
 
     source ~/.git-completion.bash
+
+git如果某个文件已经提交过，然后把它加到gitignore, 并不能忽略。解决办法：
+先把这个文件名从ignore文件中删除，然后执行
+
+    rm thefile
+    git add -A
+    commit
+
+然后添加这个文件回ignore
