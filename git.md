@@ -36,6 +36,7 @@
 
     source ~/.git-completion.bash
 
+
 git如果某个文件已经提交过，然后把它加到gitignore, 并不能忽略。解决办法：
 先把这个文件名从ignore文件中删除，然后执行
 
@@ -44,3 +45,10 @@ git如果某个文件已经提交过，然后把它加到gitignore, 并不能忽
     commit
 
 然后添加这个文件回ignore
+
+
+#### You have either not added it yet (check git status/Untracked files) or ignored it (using .gitignore or .git/info/exclude files)
+
+You can verify it using following git command, that lists all ignored files:
+
+    git ls-files --others -i --exclude-standard
