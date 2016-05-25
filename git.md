@@ -47,17 +47,29 @@ git如果某个文件已经提交过，然后把它加到gitignore, 并不能忽
 然后添加这个文件回ignore
 
 
-<<<<<<< Updated upstream
 #### You have either not added it yet (check git status/Untracked files) or ignored it (using .gitignore or .git/info/exclude files)
 
 You can verify it using following git command, that lists all ignored files:
 
     git ls-files --others -i --exclude-standard
 =======
+
+
 ### merge
 
 error: Your local changes to the following files would be overwritten by merge:
   git.md
 Please, commit your changes or stash them before you can merge.
-Aborting
->>>>>>> Stashed changes
+
+If you want remove all local changes from your working copy, simply stash them:
+
+    git stash save --keep-index
+
+then,
+
+    git stash apply
+
+If you don't need them anymore, you now can drop that stash:
+
+    git stash drop
+
