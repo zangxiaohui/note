@@ -21,7 +21,7 @@
        person.name = theName;
     }
 
-[JS创建对象的几种方式]()http://www.jianshu.com/p/f9a1203e33d0
+[JS创建对象的几种方式](http://www.jianshu.com/p/f9a1203e33d0)
 非常简单，但一般情况下不推荐这种方法。JS good parts书中认为这种写法可读性不够强，作者推荐的是后面一种写法。
 
 2. 嵌套对象字面量

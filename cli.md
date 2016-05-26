@@ -6,6 +6,7 @@ zsh 配置框架 oh-my-zsh
 
 
 
+
 ==> Caveats
 Add the following line to your ~/.bash_profile or ~/.zshrc file (and remember
 to source the file to update your current session):
@@ -31,3 +32,15 @@ j 是 autojump 的一个封装，你可以使用 j 来代替 autojump， 相反�
 - 你不能跳到名称以破折号 (-) 开头的目录。或许你可以考虑阅读我的有关操作文件或目录 的文章，尤其是有关操作那些以‘-‘ 或其他特殊字符开头的文件和目录的内容。
 
 - 在 BASH shell 中，autojump 通过修改 $PROMPT_COMMAND 环境变量来跟踪目录的行为，所以强烈建议不要去重写 $PROMPT_COMMAND 这个环境变量。若你需要添加其他的命令到现存的 $PROMPT_COMMAND 环境变量中，请添加到$PROMPT_COMMAND 环境变量的最后。
+=======
+# iTerm Themes
+
+
+[怎么安装autojump](http://macshuo.com/?p=676)
+
+    brew install autojump
+
+    ./install.py
+
+    [[ -s ~/.autojump/etc/profile.d/autojump.sh ]] && . ~/.autojump/etc/profile.d/autojump.sh
+
