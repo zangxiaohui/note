@@ -141,6 +141,40 @@ Javascript中调用一个函数（对象），使用new或者直接调用有什�
 
     growCount += 100；
 
+等同于
+
+    growCount = growCount + 100
+
 
 
 # 在 ES6 中 改良的 5 个 JavaScript “缺陷”
+
+
+Pay attention to the comments in the code below:
+
+   var a = 4;    // a is a global variable, it can be accessed by the functions below
+
+   function foo() {
+       var b = a * 3;    // b cannot be accessed outside foo function, but can be accessed by functions
+                       // defined inside foo
+       function bar(c) {
+       var b = 2;  // another `b` variable is created inside bar function scope
+                   // the changes to this new `b` variable don't affect the old `b` variable
+       console.log( a, b, c );
+       }
+
+       bar(b * 4);
+   }
+
+   foo(); // 4, 2, 48
+
+IIFE, Immediately Invoked Function Expression, is a common pattern for
+creating local scopes example:
+
+       (function(){ // the function expression is surrounded by parenthesis
+           // variables defined here
+           // can't be accessed outside
+       })(); // the function is immediately invoked
+
+
+## if(something)与(something !=null)完全等价
