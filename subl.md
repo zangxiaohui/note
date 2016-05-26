@@ -38,4 +38,6 @@
 
 #### 移除与光标相关的父标签。对清除标记很有帮助。
 
-    ctrl+shift+;
+    cmd+' // enter前面的键
+
+    win: ctrl+shift+;

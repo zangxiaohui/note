@@ -140,3 +140,7 @@ Javascript中调用一个函数（对象），使用new或者直接调用有什�
 加减乘除
 
     growCount += 100；
+
+
+
+# 在 ES6 中 改良的 5 个 JavaScript “缺陷”

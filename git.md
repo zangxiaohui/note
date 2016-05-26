@@ -52,7 +52,7 @@ git如果某个文件已经提交过，然后把它加到gitignore, 并不能忽
 You can verify it using following git command, that lists all ignored files:
 
     git ls-files --others -i --exclude-standard
-=======
+
 
 
 ### merge
