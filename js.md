@@ -178,3 +178,11 @@ creating local scopes example:
 
 
 ## if(something)与(something !=null)完全等价
+
+
+隐式转换
+
+NaN ≠ NaN
+new Object ≠ newObject
+js中对象的比较是用引用比较，而不是值比较
+[1,2] == [1,2] 返回false
