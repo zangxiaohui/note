@@ -168,7 +168,7 @@ Pay attention to the comments in the code below:
 
    foo(); // 4, 2, 48
 
-IIFE, Immediately Invoked Function Expression, is a common pattern for
+# IIFE, Immediately Invoked Function Expression, is a common pattern for
 creating local scopes example:
 
        (function(){ // the function expression is surrounded by parenthesis
@@ -176,8 +176,15 @@ creating local scopes example:
            // can't be accessed outside
        })(); // the function is immediately invoked
 
+- 比如JavaScript中没有命名空间，而且只有function代码块内部可以隔离变量作用域，自调用匿名函数就用来防止变量弥散到全局
+- 1. js中没有块级作用域，用来隔离作用域避免污染，或者截断作用域链，避免闭包造成引用变量无法释放。
+  2. 利用立即执行特性，返回需要的业务函数或对象，避免每次通过条件判断来处理。
+
+- IIFE最常用的功能显然是隔离作用域。
+- 还有种常用就是，用IIFE写惰性载入，因为函数被执行引擎以同步的方式立即执行了，所以当你在之后的代码访问这个变量的时候可以直接返回给你计算后的筛选结果了。
 
 ## if(something)与(something !=null)完全等价
+
 
 
 隐式转换
@@ -186,3 +193,82 @@ NaN ≠ NaN
 new Object ≠ newObject
 js中对象的比较是用引用比较，而不是值比较
 [1,2] == [1,2] 返回false
+=======
+## 正则
+
+    '<p><a href="http://aaa.com/" target="_blank">新发现</a></p>'.replace(/href="(?:.+?)"/ig, 'href="#"');
+
+    ?:匹配不获取
+
+    ?懒惰匹配
+
+    .+一个以上任意字符
+
+
+事件处理函数的工作机制：
+  在为某个元素添加了事件处理函数后，一旦事件发生，相应的js代码就会得到执行，被调用的js代码可以返回一个值，这个值将被传递给那个事件处理函数。
+  e.g. 我们给某个链接添加了一个onclick事件处理函数，并让这个处理函数所触发的js代码返回boolean,这样一来，当这个链接被点击时，js返回的指是true，onclick时间处理函数就会认为“这个链接被点击了”，反之，会认为“这个链接被点击”
+
+
+break跳出循环
+continue跳出这次
+
+1、事件处理方法中的return false 并不是终止事件，而是阻止事件宿主的默认行为；
+1、不是在所有的事件处理方法中，return false都能阻止事件宿主的默认行为；
+事实上，仅仅在HTML事件属性和DOM 0级事件处理方法中，才能通过返回return false的形式组织事件宿主的默认行为。
+可参考[Document Object Model (DOM) Level 3 Events Specification](https://www.w3.org/TR/DOM-Level-3-Events/#event-flow-default-cancel)
+
+
+return 后面千万不要跟 换行(回车)
+在ＩＥ里面，事件是通过回调函数实现的（ＭＳ的.NET, IE, Win32在事件处理上都是一致的）．如果没有return false了，就会接着往下执行，如果返回了一个false就跳出这个回调函数．
+
+
+
+
+# [js中(function(){…})()立即执行函数写法理解](http://dengo.org/archives/1004)
+
+函数声明：function fnName () {…};使用function关键字声明一个函数，再指定一个函数名，叫函数声明。
+
+函数表达式 var fnName = function () {…};使用function关键字声明一个函数，但未给函数命名，最后将匿名函数赋予一个变量，叫函数表达式，这是最常见的函数表达式语法形式。
+
+匿名函数：function () {}; 使用function关键字声明一个函数，但未给函数命名，所以叫匿名函数，匿名函数属于函数表达式，匿名函数有很多作用，赋予一个变量则创建函数，赋予一个事件则成为事件处理程序或创建闭包等等。
+
+函数声明和函数表达式不同之处在于，一、Javascript引擎在解析javascript代码时会‘函数声明提升’（Function declaration Hoisting）当前执行环境（作用域）上的函数声明，而函数表达式必须等到Javascirtp引擎执行到它所在行时，才会从上而下一行一行地解析函数表达式，二、函数表达式后面可以加括号立即调用该函数，函数声明不可以，只能以fnName()形式调用 。以下是两者差别的两个例子。
+
+可以看到输出结果，在function前面加！、+、 -甚至是逗号等到都可以起到函数定义后立即执行的效果，而（）、！、+、-、=等运算符，都将函数声明转换成函数表达式，消除了javascript引擎识别函数表达式和函数声明的歧义，告诉javascript引擎这是一个函数表达式，不是函数声明，可以在后面加括号，并立即执行函数的代码。
+
+( function(){…} )()和( function (){…} () )是两种javascript立即执行函数的常见写法
+
+
+加括号代表执行这个函数，不加括号代表把这个函数赋值给某个变量。 Ex：
+function Test(){
+alert( 郑久胜是笨蛋。 )
+}
+此时，Test代表这个函数的对象，Test()就是直接运行了。 var Fun=Test;就是让Fun也指向了Test，此时Fun()就相当于Test()。
+那么我们来说下oBtn.onclick = Test;
+oBtn.onclick也就相当于一个Fun，只不过它附属于oBtn这个标签。
+等号是赋值操作如果是对象，就会把对象的指向付给变量。Test是对象指向，Test()就是执行了函数，它最终是个什么东西，就看函数体返回什么类型，Test里就一个alert，没有return任何东西，那么就相当于undefined。所以
+oBtn.onclick=undeined了，你执行就没反应。
+但是如果Test的内部返回的是一个函数比如：
+    function Test(){
+    alert( 郑久胜是笨蛋。 )
+    return function(){alert( 怎么可能？ )}
+    }
+oBtn.onclick=Test()就相当于
+oBtn.onclick=function(){alert( 怎么可能？ )}
+
+
+＃JS闭包的真正意义
+
+1.函数嵌套函数
+2.函数内部可以访问到外部的变量或者对象
+3.避免了垃圾回收
+
+
+    function a(i)
+    {
+      return function(){
+        return i+1
+      }
+    }
+
