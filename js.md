@@ -1,13 +1,65 @@
-## JS 创建对象的几种方法
+# JS 创建对象的几种方法
 
+- 工厂模式
 - 对象的字面量
 - 构造器模式
-- 工厂模式
+
+
+## 工厂模式：
+
+    function createCar(sColor,iDoors,iMpg) {
+      var oTempCar = new Object;
+      oTempCar.color = sColor;
+      oTempCar.doors = iDoors;
+      oTempCar.mpg = iMpg;
+      oTempCar.showColor = function() {
+        alert(this.color);
+      };
+      return oTempCar;
+    }
+
+    var oCar1 = createCar("red",4,23);
+    var oCar2 = createCar("blue",3,25);
+
+    oCar1.showColor();    //输出 "red"
+    oCar2.showColor();    //输出 "blue"
+
+
+每次调用函数 createCar()，都要创建新函数 showColor()，意味着每个对象都有自己的 showColor() 版本。而事实上，每个对象都共享同一个函数。
+有些开发者在工厂函数外定义对象的方法，然后通过属性指向该方法，从而避免这个问题：
+
+    function showColor(){
+      alert(this.color)
+    }
+    function createCar(sColor, iDoors, iMpg){
+      oTempCar.showColor = showColor;
+    }
+
+## 构造函数方式
+
+    function Car(sColor,iDoors,iMpg) {
+      this.color = sColor;
+      this.doors = iDoors;
+      this.mpg = iMpg;
+      this.showColor = function() {
+        alert(this.color);
+      };
+    }
+
+    var oCar1 = new Car("red",4,23);
+    var oCar2 = new Car("blue",3,25);
+
+
+
+
 
 
 ** 1. 直接调用的时候它叫“普通函数”，此时用全局对象window做上下文。**
 ** 2. 用new操作符调用的时候它叫“构造函数”，此时用这个新生的对象做上下文。**
 ** 3. 用某个对象拽着它调用的时候，它叫做“方法”，此时用拽它的那个对象做上下文。**
+
+
+
 
 
 1. 简单对象字面量
@@ -76,16 +128,6 @@ B:用字面量定义，只需要直接在对象的这个属性上，写function�
     this.introduce=function(){
     alert("My name is "+this.name+", I am"+age+"year(s) old, I am a "+job+".");
     }
-    }
-
-工厂模式：
-
-    function createPerson(name,age,job){
-    var o=new Object();
-    o.name=name;
-    o.age=age;
-    o.job=job;
-    return o;
     }
 
 
@@ -271,4 +313,30 @@ oBtn.onclick=function(){alert( 怎么可能？ )}
         return i+1
       }
     }
+
+
+
+function A(){
+  for(var i=0; i<3; i++){  //这句的执行默认都是在结尾对i+1操作
+    console.log(i); //0 1 2
+  }
+  console.log(i) //3 当i=2时，继续执行，执行后i+1=3，然后在进循环判断i已经不再小于三，这次跳出循环
+}
+
+
+一般对于某种类型t1，首次进入时countMap没有t1属性，所以会返回undefined，则初始化默认设置为1.
+而后每次出现，都+1.
+最后统计没种类型的出现次数，若全部相同，则同构。
+
+
+
+TooBug  16:16:40
+a=[{a:1},2,3,4]
+b = a.slice();
+TooBug  16:16:53
+试着改一下b[0].a或者a[0].a
+TooBug  16:09:30
+浅复制也是复制。
+TooBug  16:09:43
+得有嵌套才能分出区别。
 
