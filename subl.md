@@ -41,3 +41,14 @@
     cmd+' // enter前面的键
 
     win: ctrl+shift+;
+
+
+ cd bin
+    ln -s /Applications/Sublime\ Text.app/Contents/SharedSupport/bin/subl subl
+
+
+或者
+    sudo ln -s /Applications/Sublime\ Text.app/Contents/SharedSupport/bin/subl  /bin/subl
+
+路径改变一下
+$ sudo ln -s /Applications/Sublime\ Text.app/Contents/SharedSupport/bin/subl /usr/local/bin/subl
