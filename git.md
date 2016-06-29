@@ -1,3 +1,6 @@
+#tig
+    brew install tig
+
 ### .gitconfig 文件
     [user]
       name = Xiaohui Zang

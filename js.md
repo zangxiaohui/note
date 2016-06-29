@@ -1,8 +1,8 @@
 # JS 创建对象的几种方法
 
-- 工厂模式
-- 对象的字面量
-- 构造器模式
+- 工厂模式 (用函数来封装以特定接口创建对象，该函数返回一个对象，工厂模式美元解决对象识别的问题)
+- 构造函数模式
+- 原型模式 
 
 
 ## 工厂模式：
@@ -52,15 +52,28 @@
 
 
 
-
-
 ** 1. 直接调用的时候它叫“普通函数”，此时用全局对象window做上下文。**
 ** 2. 用new操作符调用的时候它叫“构造函数”，此时用这个新生的对象做上下文。**
 ** 3. 用某个对象拽着它调用的时候，它叫做“方法”，此时用拽它的那个对象做上下文。**
 
 
 
+## 原型模式
 
+    // 原型模式
+    function Person(){}
+    Person.prototype.name = "Tayler Swift";
+    Person.prototype.age = 22;
+    Person.prototype.job = "singer";
+    Person.prototype.sayName = function(){
+      alert(this.name)
+    }
+    var person1 = new Person();
+
+
+
+
+当复制保存着对象的某个变量时，操作的是对象的引用，但在为对象添加属性时，操作的是实际的对象。
 
 1. 简单对象字面量
 
@@ -119,23 +132,11 @@ B:用字面量定义，只需要直接在对象的这个属性上，写function�
 
 
 
-构造器模式:
-
-    function Person(name,age,job){
-    this.name=name;
-    this.age=age;
-    this.job=job;
-    this.introduce=function(){
-    alert("My name is "+this.name+", I am"+age+"year(s) old, I am a "+job+".");
-    }
-    }
 
 
 
 
 
-
-new 语句后面必须带构造函数，只有构造函数才能 new，这个构造函数负责对象的初始化。
 
 
     var date = Date(2016, 3, 20);
