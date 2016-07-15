@@ -76,3 +76,26 @@ If you don't need them anymore, you now can drop that stash:
 
     git stash drop
 
+
+
+# 切换分支
+
+git fetch
+git status
+
+   (use "git checkout -- <file>..." to discard changes in working directory)
+
+  modified:   poll/frontend/js-src/components/activity/Activity.js
+  modified:   poll/frontend/js-src/components/activityform/AwardTable.js
+
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+
+  poll/frontend/js-src/components/activityform/untitled.js
+
+no changes added to commit (use "git add" and/or "git commit -a")
+
+
+git checkout -- poll
+
+git branch
