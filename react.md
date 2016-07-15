@@ -23,3 +23,27 @@ docker
 
     docker-compose stop
     docker-compose start nginx
+
+
+# courses.reactjsprogram.com
+
+    git clone
+    ls
+    git checkout solution
+    ls
+    npm install
+
+
+
+    npm run production
+    npm run start
+
+
+
+    plugins: [
+      new webpack.DefinePlugin({
+        'process.env': {
+          NODE_ENV: JSON.stringify('production')
+        }
+      })
+    ]

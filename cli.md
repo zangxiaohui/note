@@ -44,3 +44,9 @@ j 是 autojump 的一个封装，你可以使用 j 来代替 autojump， 相反�
 
     [[ -s ~/.autojump/etc/profile.d/autojump.sh ]] && . ~/.autojump/etc/profile.d/autojump.sh
 
+
+
+#
+
+npm init -y
+npm install --save react react-dom && npm install --save-dev html-webpack-plugin webpack webpack-dev-server babel-{core,loader} babel-preset-{react,es2015,stage-0} style-loader css-loader
