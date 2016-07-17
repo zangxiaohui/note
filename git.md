@@ -1,5 +1,32 @@
+#安装 Git 到命令行
+
+    brew install git
+
+#创建本地仓库
+
+    cd project/
+    git init
+
+#命令行中要查看修改。可以这样，运行
+
+    git status
+
+#就可以看到本次的修改内容了。详细的代码还可以通过
+
+    git diff
+
 #tig
     brew install tig
+
+    tig
+    q //quit
+    d //detail
+
+tig = git log -p
+
+git log -p
+按j 往下翻页
+
 
 ### .gitconfig 文件
     [user]
