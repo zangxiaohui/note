@@ -341,3 +341,16 @@ TooBug  16:09:30
 TooBug  16:09:43
 得有嵌套才能分出区别。
 
+
+
+
+Fetch.post(ENV.VISHOW_URL + "/user/deleteChildMember", {body: `memberId=${id}`}).then(data=>{
+                console.log(data)
+                this.loadData(1);
+                common.success("删除成功!");
+            })
+
+
+    Fetch.get(ENV.VISHOW_URL + `/user/findChildMembers?page=${page}`).then(data=>{
+            store.dispatch(listMembers(data))
+        })
