@@ -126,3 +126,28 @@ no changes added to commit (use "git add" and/or "git commit -a")
 git checkout -- poll
 
 git branch
+
+playPageAudio: function (pageIndex) {
+            var self=this,
+                dom=this.dom,
+                data=self.options.data,
+                pages=dom.find(".preview-item-page"),
+                curPage = pages.eq(pageIndex);
+            //销毁其他页面的音频播放组件
+            var curPageJSON=data.pages[pageIndex];
+            pages.find(".preview-element.audio").vishowAudio("destroy");
+            curPage.find(".preview-element.audio").each(function(index,item){
+                item=$(item);
+                var audioJSON = _.find(curPageJSON.audios, function (audio) {
+                    return ("ele-"+(audio.id || audio.hookId)) == item.attr("id");
+                });
+                if(audioJSON){
+                    item.vishowAudio($.extend({},audioJSON,{
+                        initPlay:true,
+                        audioDom:"#"+item.attr("id")+">audio"
+                    }));
+                }
+            });
+        },
+
+

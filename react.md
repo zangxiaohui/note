@@ -25,6 +25,10 @@ docker
     docker-compose start nginx
 
 
+    端口 807
+    http://192.168.99.100:807/admin/activity/list2
+
+
 # courses.reactjsprogram.com
 
     git clone

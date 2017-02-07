@@ -45,3 +45,10 @@ source ~/.profile
     curl -sSL https://get.rvm.io | bash -s stable
     // 修改 RVM 的 Ruby 安装源到国内的 [淘宝镜像服务器](http://ruby.taobao.org/)，这样能提高安装速度
     sed -i -e 's/ftp\.ruby-lang\.org\/pub\/ruby/ruby\.taobao\.org\/mirrors\/ruby/g' ~/.rvm/config/db
+
+
+
+
+playPageAudio: function(pageIndex){
+
+}
