@@ -14,7 +14,7 @@ common.numFormat = function (num) {
 
 
 
-优雅的数组降维
+// 优雅的数组降维
 
 function flattenArray(arr) {
   return Array.prototype.concat.apply([], arr);
@@ -28,7 +28,7 @@ export function isEmptyObject(obj) {
 
 
 
-取出第一个参数
+// 取出第一个参数
 var key = Array.prototype.shift.call(arguments);
 
 
