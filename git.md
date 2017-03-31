@@ -151,3 +151,104 @@ playPageAudio: function (pageIndex) {
         },
 
 
+使用docker
+
+打开
+/Applications/Docker/Docker\ Quickstart\ Terminal.app
+
+
+
+docker
+
+    ls
+    cd docker
+    docker-compose up -d nginx
+    //ERROR: Tag latest not found in repository docker.io/library/nginx
+    docker pull nginx
+    docker-compose up -d nginx
+
+    docker-compose stop
+    docker-compose start nginx
+
+
+
+
+
+activity
+
+    cd docker
+    docker-compose ps
+    docker-compose stop
+    docker-compose rm
+    y
+    docker-compose up
+    docker-compose up -d nginx
+    docker-compose ps
+
+
+
+使用 fix, add, change 而不是 fixed, added, changed
+永远别忘了第2行是空行
+用 Line break 来分割提交信息，让它在某些软件里面更容易读
+请将每次提交限定于完成一次逻辑功能。并且可能的话，适当地分解为多次小更新，以便每次小型提交都更易于理解。
+
+
+    Format of the commit message
+    <type>(<scope>): <subject>
+    <BLANK LINE>
+    <body>
+    <BLANK LINE>
+    <footer>
+
+
+
+
+    Allowed <type>
+    This describes the kind of change that this commit is providing.
+    feat (feature)
+    fix (bug fix)
+    docs (documentation)
+    style (formatting, missing semi colons, …)
+    refactor
+    test (when adding missing tests)
+    chore (maintain)
+
+
+
+
+
+
+
+
+    Fix bug where user can't signup.
+
+    [Bug #2873942]
+
+    Users were unable to register if they hadn't visited the plans
+    and pricing page because we expected that tracking
+    information to exist for the logs we create after a user
+    signs up.  I fixed this by adding a check to the logger
+    to ensure that if that information was not available
+    we weren't trying to write it.
+
+
+    Redirect user to the requested page after login
+
+    https://trello.com/path/to/relevant/card
+
+    Users were being redirected to the home page after login, which is less
+    useful than redirecting to the page they had originally requested before
+    being redirected to the login form.
+
+    * Store requested path in a session variable
+    * Redirect to the stored location after successfully logging in the user
+
+
+
+    Switch libvirt get_cpu_info method over to use config APIs
+
+    The get_cpu_info method in the libvirt driver currently uses    XPath queries to extract information from the capabilities    XML document. Switch this over to use the new config class    LibvirtConfigCaps. Also provide a test case to validate    the data being returned.
+
+    Closes-Bug: #1003373
+    Implements: blueprint libvirt-xml-cpu-model
+    Change-Id: I4946a16d27f712ae2adf8441ce78e6c0bb0bb657

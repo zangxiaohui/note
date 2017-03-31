@@ -72,7 +72,12 @@ new操作符具体干了什么呢?
 ** 2. 用new操作符调用的时候它叫“构造函数”，此时用这个新生的对象做上下文。**
 ** 3. 用某个对象拽着它调用的时候，它叫做“方法”，此时用拽它的那个对象做上下文。**
 
+obj.fn()
+fn.call(obj, arg)
+fn.apply(obj, [arg1, arg2...])
+fn.bind(obj, ...)
 
+如果call或apply的第一个参数是null的话，this指向window
 
 
 ## 原型模式
@@ -333,21 +338,142 @@ TooBug  16:09:43
 
 
 
-第一个i是函数的形参，是私有变量，与外面的i没有关系，被私有作用域保护起来了，
 
-for (var i = 0, arr = []; i <= 3; i++) {
-  arr.push(function(i){console.log(i)}(i))
+
+Function.prototype.bind = function(oThis) {
+ console.log(arguments)
+  var aArgs = Array.prototype.slice.call(arguments, 1),
+    fToBind = this;
+  return function() {
+   console.log(arguments)
+  return fToBind.apply(oThis, aArgs.concat(Array.prototype.slice.call(arguments)))
+  }
 }
 
-arr[0]()
-arr(1)()
 
-
-(function(x) {
- return (function(y) {
- console.log(x);
- })(2)
-})(1);
+indexOf()使用的是严格比较，也就是===
 
 
 
+
+if (!Array.prototype.indexOf) {
+  Array.prototype.indexOf = function(searchElement, fromIndex) {
+
+    var k;
+
+    var len = o.length >>> 0;
+
+
+
+    // 5. If argument fromIndex was passed let n be
+    //    ToInteger(fromIndex); else let n be 0.
+    var n = fromIndex | 0;
+
+    // 6. If n >= len, return -1.
+    if (n >= len) {
+      return -1;
+    }
+
+    // 7. If n >= 0, then Let k be n.
+    // 8. Else, n<0, Let k be len - abs(n).
+    //    If k is less than 0, then let k be 0.
+    k = Math.max(n >= 0 ? n : len - Math.abs(n), 0);
+
+    // 9. Repeat, while k < len
+    while (k < len) {
+      // a. Let Pk be ToString(k).
+      //   This is implicit for LHS operands of the in operator
+      // b. Let kPresent be the result of calling the
+      //    HasProperty internal method of o with argument Pk.
+      //   This step can be combined with c
+      // c. If kPresent is true, then
+      //    i.  Let elementK be the result of calling the Get
+      //        internal method of o with the argument ToString(k).
+      //   ii.  Let same be the result of applying the
+      //        Strict Equality Comparison Algorithm to
+      //        searchElement and elementK.
+      //  iii.  If same is true, return k.
+      if (k in o && o[k] === searchElement) {
+        return k;
+      }
+      k++;
+    }
+    return -1;
+  };
+}
+
+
+
+
+if (!Array.prototype.includes) {
+  Object.defineProperty(Array.prototype, 'includes', {
+    value: function(searchElement, fromIndex) {
+
+
+      var len = o.length >>> 0;
+
+
+
+      // 4. Let n be ? ToInteger(fromIndex).
+      //    (If fromIndex is undefined, this step produces the value 0.)
+      var n = fromIndex | 0;
+
+      // 5. If n ≥ 0, then
+      //  a. Let k be n.
+      // 6. Else n < 0,
+      //  a. Let k be len + n.
+      //  b. If k < 0, let k be 0.
+      var k = Math.max(n >= 0 ? n : len - Math.abs(n), 0);
+
+      // 7. Repeat, while k < len
+      while (k < len) {
+        // a. Let elementK be the result of ? Get(O, ! ToString(k)).
+        // b. If SameValueZero(searchElement, elementK) is true, return true.
+        // c. Increase k by 1.
+        // NOTE: === provides the correct "SameValueZero" comparison needed here.
+        if (o[k] === searchElement) {
+          return true;
+        }
+        k++;
+      }
+
+      // 8. Return false
+      return false;
+    }
+  });
+}
+
+
+
+
+
+
+# XMLHttpRequest
+
+ajax是一种技术方案，但并不是一种新技术。它依赖的是现有的CSS/HTML/Javascript，而其中最核心的依赖是浏览器提供的XMLHttpRequest对象，是这个对象使得浏览器可以发出HTTP请求与接收HTTP响应。
+
+所以我用一句话来总结两者的关系：我们使用XMLHttpRequest对象来发送一个Ajax请求。
+
+
+x-requested-with  XMLHttpRequest  //表明是AJax异步
+
+request.getHeader("x-requested-with"); 为 null，则为传统同步请求，为 XMLHttpRequest，则为 Ajax 异步请求。
+
+
+
+
+注意,var foo 尽管出现在 function foo()... 的声明之前,但它是重复的声明(因此被忽 略了),因为函数声明会被提升到普通变量之前。
+尽管重复的 var 声明会被忽略掉,但出现在后面的函数声明还是可以覆盖前面的。
+
+使用:
+      foo(); // TypeError
+      bar(); // ReferenceError
+var foo = function bar() { // ...
+};
+ 这个代码片段经过提升后,实际上会被理解为以下形式:
+var foo;
+foo(); // TypeError
+      bar(); // ReferenceError
+foo = function() {
+var bar = ...self... // ...
+}
