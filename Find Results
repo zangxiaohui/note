@@ -1,0 +1,29 @@
+Searching 26 files for "docker" (case sensitive)
+
+/Users/zangxiaohui/note/react.md:
+   13
+   14
+   15: docker
+   16
+   17      ls
+   18:     cd docker
+   19:     docker-compose up -d nginx
+   20:     //ERROR: Tag latest not found in repository docker.io/library/nginx
+   21:     docker pull nginx
+   22:     docker-compose up -d nginx
+   23
+   24:     docker-compose stop
+   25:     docker-compose start nginx
+   26
+   27
+
+  28
+   29: docker-compose ps
+   30: ERROR: Couldn't connect to Docker daemon - you might need to run `docker-machine start default`.
+   31: docker-compose ps
+   32: docker-compose stop
+   33: docker-compose rm nginx
+   34: docker-compose up -d nginx
+
+
+8 matches in 1 file

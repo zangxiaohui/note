@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+</head>
+<body>
+  <div>
+    <p>这是一段话，这里有个<strong>加粗字体</strong>。</p>
+</div>
+<script>
+  document.addEventListener('click', function(e){
+    alert(e.target.tagName);
+}, false);
+</script>
+</body>
+</html>
