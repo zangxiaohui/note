@@ -54,4 +54,11 @@
 $ sudo ln -s /Applications/Sublime\ Text.app/Contents/SharedSupport/bin/subl /usr/local/bin/subl
 
 
-测试测试lip<div></div><div></div>
+
+cd ~
+cd Library/Application\ Support/Sublime\ Text\ 3
+ls
+cd Packages
+ls User
+rm -rf User
+mv sublime-config User
